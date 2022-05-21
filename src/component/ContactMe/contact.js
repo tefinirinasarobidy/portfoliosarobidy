@@ -1,11 +1,19 @@
 import  "./contact.css";
 import {useRef} from "react";
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
     const formRef = useRef()
     const handleSubmit = (e) => {
         e.preventDefault();
-    }
+        console.log('dsds',formRef.current)
+        emailjs.sendForm('service_079gk8f', 'template_vozg7z6', formRef.current, 'J51UuCRIWjIxSQT5P')
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
+    } 
     return ( 
     	<div className ="container" >
         	<form role="form" ref={formRef} onSubmit={handleSubmit}>
